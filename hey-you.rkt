@@ -16,35 +16,41 @@
                underline?
                font-smoothing))
 
-;; Anything from this point on is supposed to be dynamically read from
-;; whatever remote source we use. The source is, as such, supposed to supply
-;; the frontend with object-specifications that it can follow.
-
 (define title-panel (new horizontal-panel% [parent top-frame]
                          [vert-margin 16]
                          [alignment '(center top)]
                          [stretchable-width #f]
                          [stretchable-height #f]))
-(define title-font (make-font 14 "Courier" 'roman 'normal 'bold))
-(define title-msg (new message% [parent title-panel]
-                       [label "Title here"]
-                       [font title-font]))
 
 (define paragraph-panel (new horizontal-panel% [parent top-frame]
                              [alignment '(center top)]
                              [horiz-margin 24]))
+
+;; Anything from this point on is supposed to be dynamically read from
+;; whatever source we use. The source is supposed to supply
+;; the frontend with object-specifications that it can follow.
+
+(define title-font (make-font 14 "Courier" 'roman 'normal 'bold))
+(define title-msg (new message% [parent title-panel]
+                       [label "This is a test. Do not turn off your TV set."]
+                       [font title-font]))
+
 (define paragraph-font (make-font))
-
-
 (define paragraph-text (new text% [auto-wrap #t] [line-spacing 5]))
 
 (define (add-paragraph text-object paragraph-content)
   (send text-object insert (string-append paragraph-content "\n\n")))
 
-(add-paragraph paragraph-text "This is a very short test-paragraph. It can be added to. How much is a very interesting thing, and I think that it'll be quite a lot when I use an editor-canvas.")
-(add-paragraph paragraph-text "This is the second paragraph and because I'm not feeling very creative it's not going to be very long. I feel like it doesn't matter, though, since to some extent it's going to show what's happening anyway.")
+(add-paragraph paragraph-text
+               "Jag testar att sitta och skriva här ett tag så märker jag sen om det blir konstig kerning. Personligen tror jag inte att den pallar med allt när man ska köra en transparent editor-canvas. En lösning vore väl att köra en grå bakgrund på själva canvasen, men jag vet inte exakt hur jag skulle göra det. Det känns inte så himla relevant i slutändan, så jag vet inte.")
+
+(add-paragraph paragraph-text
+               "Ännu en paragraf, bara för att fylla skiten med text. Det är otroligt svårt att bara skriva för att skriva, har jag märkt. Man måste ju ha något att säga, oftast, vilket sällan kommer på beställning så här. En bra grej med det är att man kan få idén att skriva om hur svårt det är att bara komma på något att skriva, så då löser det ju sig självt, kan man säga.")
+
+; Originally I'd planned to use a transparent canvas, but it ended up messing up some
+; stuff with kerning and the like. Weird spaces in the middle of words started showing up.
 (define paragraph-canvas (new editor-canvas% [parent paragraph-panel]
-                              [editor paragraph-text]
+                              [editor #f]
                               [style '(no-border auto-hscroll auto-vscroll)]
                               [enabled #f]))
 (send paragraph-canvas set-editor paragraph-text)
