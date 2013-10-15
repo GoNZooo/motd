@@ -25,7 +25,10 @@
 (define paragraph-panel (new horizontal-panel% [parent top-frame]
                              [alignment '(center top)]
                              [horiz-margin 24]))
-
+(define paragraph-canvas (new editor-canvas% [parent paragraph-panel]
+                              [editor #f]
+                              [style '(no-border auto-hscroll auto-vscroll)]
+                              [enabled #f]))
 ;; Anything from this point on is supposed to be dynamically read from
 ;; whatever source we use. The source is supposed to supply
 ;; the frontend with object-specifications that it can follow.
@@ -49,10 +52,7 @@
 
 ; Originally I'd planned to use a transparent canvas, but it ended up messing up some
 ; stuff with kerning and the like. Weird spaces in the middle of words started showing up.
-(define paragraph-canvas (new editor-canvas% [parent paragraph-panel]
-                              [editor #f]
-                              [style '(no-border auto-hscroll auto-vscroll)]
-                              [enabled #f]))
+
 (send paragraph-canvas set-editor paragraph-text)
 
 (send top-frame show #t)
