@@ -26,6 +26,10 @@
                              [alignment '(center top)]
                              [horiz-margin 24]))
 
+(define paragraph-text (new text% [auto-wrap #t] [line-spacing 5]))
+(define (add-paragraph paragraph-content)
+  (send paragraph-text insert (string-append paragraph-content "\n\n")))
+
 ; Originally I'd planned to use a transparent canvas, but it ended up messing up some
 ; stuff with kerning and the like. Weird spaces in the middle of words started showing up.
 (define paragraph-canvas (new editor-canvas% [parent paragraph-panel]
@@ -42,10 +46,7 @@
                        [font title-font]))
 
 (define paragraph-font (make-font))
-(define paragraph-text (new text% [auto-wrap #t] [line-spacing 5]))
 
-(define (add-paragraph text-object paragraph-content)
-  (send text-object insert (string-append paragraph-content "\n\n")))
 
 (add-paragraph paragraph-text
                "Jag testar att sitta och skriva här ett tag så märker jag sen om det blir konstig kerning. Personligen tror jag inte att den pallar med allt när man ska köra en transparent editor-canvas. En lösning vore väl att köra en grå bakgrund på själva canvasen, men jag vet inte exakt hur jag skulle göra det. Det känns inte så himla relevant i slutändan, så jag vet inte.")
