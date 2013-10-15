@@ -5,6 +5,10 @@
 
 (define top-frame (new frame% [label "Hey, You. :)"]))
 
+;; Anything from this point on is supposed to be dynamically read from
+;; whatever remote source we use. The source is, as such, supposed to supply
+;; the frontend with object-specifications that it can follow.
+
 (define title-panel (new horizontal-panel% [parent top-frame]
                          [vert-margin 16]
                          [alignment '(center top)]
