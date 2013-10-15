@@ -25,6 +25,9 @@
 (define paragraph-panel (new horizontal-panel% [parent top-frame]
                              [alignment '(center top)]
                              [horiz-margin 24]))
+
+; Originally I'd planned to use a transparent canvas, but it ended up messing up some
+; stuff with kerning and the like. Weird spaces in the middle of words started showing up.
 (define paragraph-canvas (new editor-canvas% [parent paragraph-panel]
                               [editor #f]
                               [style '(no-border auto-hscroll auto-vscroll)]
@@ -50,8 +53,6 @@
 (add-paragraph paragraph-text
                "Ännu en paragraf, bara för att fylla skiten med text. Det är otroligt svårt att bara skriva för att skriva, har jag märkt. Man måste ju ha något att säga, oftast, vilket sällan kommer på beställning så här. En bra grej med det är att man kan få idén att skriva om hur svårt det är att bara komma på något att skriva, så då löser det ju sig självt, kan man säga.")
 
-; Originally I'd planned to use a transparent canvas, but it ended up messing up some
-; stuff with kerning and the like. Weird spaces in the middle of words started showing up.
 
 (send paragraph-canvas set-editor paragraph-text)
 
