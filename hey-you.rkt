@@ -23,6 +23,8 @@
                              [alignment '(center top)]
                              [horiz-margin 24]))
 (define paragraph-font (make-object font% 12 "Courier" 'roman 'normal 'normal))
+
+
 (define paragraph-text (new text% [auto-wrap #t] [line-spacing 5]))
 
 (define (add-paragraph text-object paragraph-content)
@@ -30,10 +32,10 @@
 
 (add-paragraph paragraph-text "This is a very short test-paragraph. It can be added to. How much is a very interesting thing, and I think that it'll be quite a lot when I use an editor-canvas.")
 (add-paragraph paragraph-text "This is the second paragraph and because I'm not feeling very creative it's not going to be very long. I feel like it doesn't matter, though, since to some extent it's going to show what's happening anyway.")
-(define paragraph-editor (new editor-canvas% [parent paragraph-panel]
+(define paragraph-canvas (new editor-canvas% [parent paragraph-panel]
                               [editor paragraph-text]
                               [style '(no-border auto-hscroll auto-vscroll)]
                               [enabled #f]))
-(send paragraph-editor set-editor paragraph-text)
+(send paragraph-canvas set-editor paragraph-text)
 
 (send top-frame show #t)
