@@ -5,6 +5,17 @@
 
 (define top-frame (new frame% [label "Hey, You. :)"]))
 
+(define (make-font [size 12] [face "Courier"] [family 'roman] [style 'normal]
+                   [weight 'normal] [underline? #f] [font-smoothing 'default])
+  (make-object font%
+               size
+               face
+               family
+               style
+               weight
+               underline?
+               font-smoothing))
+
 ;; Anything from this point on is supposed to be dynamically read from
 ;; whatever remote source we use. The source is, as such, supposed to supply
 ;; the frontend with object-specifications that it can follow.
@@ -14,7 +25,7 @@
                          [alignment '(center top)]
                          [stretchable-width #f]
                          [stretchable-height #f]))
-(define title-font (make-object font% 14 "Courier" 'roman 'normal 'bold))
+(define title-font (make-font 14 "Courier" 'roman 'normal 'bold))
 (define title-msg (new message% [parent title-panel]
                        [label "Title here"]
                        [font title-font]))
@@ -22,7 +33,7 @@
 (define paragraph-panel (new horizontal-panel% [parent top-frame]
                              [alignment '(center top)]
                              [horiz-margin 24]))
-(define paragraph-font (make-object font% 12 "Courier" 'roman 'normal 'normal))
+(define paragraph-font (make-font))
 
 
 (define paragraph-text (new text% [auto-wrap #t] [line-spacing 5]))
