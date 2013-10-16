@@ -7,14 +7,7 @@
 
 (define (make-font [size 12] [face "Courier"] [family 'roman] [style 'normal]
                    [weight 'normal] [underline? #f] [font-smoothing 'default])
-  (make-object font%
-               size
-               face
-               family
-               style
-               weight
-               underline?
-               font-smoothing))
+  (make-object font% size face family style weight underline? font-smoothing))
 
 (define title-panel (new horizontal-panel% [parent top-frame]
                          [vert-margin 16]
