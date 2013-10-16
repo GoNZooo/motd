@@ -41,11 +41,9 @@
 (define paragraph-font (make-font))
 
 
-(add-paragraph paragraph-text
-               "Jag testar att sitta och skriva här ett tag så märker jag sen om det blir konstig kerning. Personligen tror jag inte att den pallar med allt när man ska köra en transparent editor-canvas. En lösning vore väl att köra en grå bakgrund på själva canvasen, men jag vet inte exakt hur jag skulle göra det. Det känns inte så himla relevant i slutändan, så jag vet inte.")
+(add-paragraph paragraph-text "Jag testar att sitta och skriva här ett tag så märker jag sen om det blir konstig kerning. Personligen tror jag inte att den pallar med allt när man ska köra en transparent editor-canvas. En lösning vore väl att köra en grå bakgrund på själva canvasen, men jag vet inte exakt hur jag skulle göra det. Det känns inte så himla relevant i slutändan, så jag vet inte.")
 
-(add-paragraph paragraph-text
-               "Ännu en paragraf, bara för att fylla skiten med text. Det är otroligt svårt att bara skriva för att skriva, har jag märkt. Man måste ju ha något att säga, oftast, vilket sällan kommer på beställning så här. En bra grej med det är att man kan få idén att skriva om hur svårt det är att bara komma på något att skriva, så då löser det ju sig självt, kan man säga.")
+(add-paragraph paragraph-text "Ännu en paragraf, bara för att fylla skiten med text. Det är otroligt svårt att bara skriva för att skriva, har jag märkt. Man måste ju ha något att säga, oftast, vilket sällan kommer på beställning så här. En bra grej med det är att man kan få idén att skriva om hur svårt det är att bara komma på något att skriva, så då löser det ju sig självt, kan man säga.")
 
 
 (send paragraph-canvas set-editor paragraph-text)
