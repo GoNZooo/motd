@@ -23,6 +23,8 @@
 (define (add-paragraph paragraph-content)
   (send paragraph-text insert (string-append paragraph-content "\n\n")))
 
+
+;; Eventually the font stuff is supposed to be dealt with on a objs-spec basis
 (define title-font (make-font 14 "Courier" 'roman 'normal 'bold))
 
 ;; Styles (fonts, etc.) in editors are managed with a style/style-delta system
