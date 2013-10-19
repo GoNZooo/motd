@@ -19,9 +19,13 @@
   (define base-filename (last (string-split url "/")))
 
   (define (download-binary-file)      
-    (call-with-output-file base-filename (lambda (op) (write-bytes (get-binary-data url) op)) #:mode 'binary #:exists 'replace))
+    (call-with-output-file base-filename
+      (lambda (op) (write-bytes (get-binary-data url) op))
+      #:mode 'binary #:exists 'replace))
   (define (download-text-file)
-    (call-with-output-file base-filename (lambda (op) (write-string (get-text-data url) op)) #:exists 'replace))
+    (call-with-output-file base-filename
+      (lambda (op) (write-string (get-text-data url) op))
+      #:exists 'replace))
 
   (cond
     [(equal? type 'text) (download-text-file)]
