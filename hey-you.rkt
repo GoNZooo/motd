@@ -10,7 +10,9 @@
    [(style-data? obj) (send paragraph-editor change-style (style-data-delta obj))]
    [(paragraph? obj) (add-paragraph (paragraph-text obj))]))
 
-(define top-frame (new frame% [label "Hey, You. :)"]))
+(define top-frame (new frame% [label "Hey, You. :)"]
+                       [min-height 640]
+                       [min-width 480]))
 
 (define title-panel (new horizontal-panel% [parent top-frame]
                          [vert-margin 8]
