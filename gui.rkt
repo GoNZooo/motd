@@ -17,8 +17,8 @@
 (define top-frame (new frame% [label "Hey, You. :)"]
                        [min-height 640] [min-width 480]))
 
-(define title-panel (new horizontal-panel% [parent top-frame] [vert-margin 8]
-                         [alignment '(center top)]
+(define title-panel (new horizontal-panel% [parent top-frame]
+                         [vert-margin 8] [alignment '(center top)]
                          [stretchable-width #f] [stretchable-height #f]))
 
 (define paragraph-panel (new horizontal-panel% [parent top-frame]
@@ -30,9 +30,8 @@
   (send paragraph-editor insert (string-append paragraph-content "\n\n")))
 
 (define paragraph-canvas (new editor-canvas% [parent paragraph-panel]
-                              [editor paragraph-editor]
-                              [style '(no-border auto-hscroll auto-vscroll)]
-                              [enabled #f]))
+                              [editor paragraph-editor] [enabled #f]
+                              [style '(no-border auto-hscroll auto-vscroll)]))
 
 (spawn-objects (make-objects remote-location))
 
