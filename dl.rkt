@@ -3,6 +3,7 @@
 (require net/url)
 (provide get-binary-data
          get-text-data
+         get-obj-data
          download-file)
 
 (define (get-binary-data url)
@@ -10,6 +11,9 @@
 
 (define (get-text-data url)
   (call/input-url (string->url url) get-pure-port port->string))
+
+(define (get-obj-data url)
+  (call/input-url (string->url url) get-pure-port read))
 
 (define (download-file url type)
   (define base-filename (last (string-split url "/")))

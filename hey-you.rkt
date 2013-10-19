@@ -4,8 +4,6 @@
          "remote-data.rkt" ; Provides remote-location = url-string
          "obj-maker.rkt")
 
-(define test-data (make-objects))
-
 (define (spawn-object obj)
   (cond
    [(title? obj) (new message% [parent title-panel] [label (title-text obj)] [font (title-font obj)])]
@@ -35,6 +33,6 @@
                               [style '(no-border auto-hscroll auto-vscroll)]
                               [enabled #f]))
 
-(for-each spawn-object test-data)
+(for-each spawn-object (make-objects remote-location))
 
 (send top-frame show #t)

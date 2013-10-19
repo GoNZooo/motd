@@ -52,7 +52,7 @@
   (if (equal? url 'test)
       (let ([data (call-with-input-file "test.objs" read)])
         (map process-object data))
-      (let ([data (get-text-data url)])
+      (let ([data (get-obj-data url)])
         (map process-object data))))
 
 (module+ main
