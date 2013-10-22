@@ -4,6 +4,13 @@
          "remote-data.rkt" ; remote-location = url-string, obscured for git-repo
          "obj-maker.rkt")
 
+;; Set up a future
+;; This might not be run in parallell because futures apparently
+;; don't handle some operations very well.
+;; So the remote fetch might end up being run straight up instead.
+(define future-objects (future (lambda ()
+                                 (make-objects remote-location))))
+
 (define (spawn-objects object-blob)
   (define (spawn-object obj)
     (cond
@@ -33,6 +40,6 @@
                               [editor paragraph-editor] [enabled #f]
                               [style '(no-border auto-hscroll auto-vscroll)]))
 
-(spawn-objects (make-objects remote-location))
+(spawn-objects (touch future-objects))
 
 (send top-frame show #t)
