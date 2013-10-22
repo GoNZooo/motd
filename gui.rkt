@@ -5,7 +5,7 @@
          "obj-maker.rkt")
 
 ;; Set up a future
-;; This might not be run in parallell because futures apparently
+;; This might not be run in paralell because futures apparently
 ;; don't handle some operations very well.
 ;; So the remote fetch might end up being run straight up instead.
 (define future-objects (future (lambda ()
