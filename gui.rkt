@@ -48,4 +48,4 @@
   (send top-frame show #t))
 
 (module+ main
-  (motd "Hey, you. :)" 800 600))
+  (motd "Hey, you. :)" 550 550))
