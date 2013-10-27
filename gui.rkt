@@ -34,14 +34,17 @@
   (define paragraph-panel (new horizontal-panel% [parent top-frame]
                                [alignment '(center top)] [horiz-margin 24]))
 
-  (define paragraph-editor (new text% [auto-wrap #t] [line-spacing 5]))
+  (define paragraph-editor (new text% [auto-wrap #t]))
 
   (define (add-paragraph paragraph-content)
     (send paragraph-editor insert (string-append paragraph-content "\n\n")))
 
   (define paragraph-canvas (new editor-canvas% [parent paragraph-panel]
-                                [editor paragraph-editor] [enabled #f]
-                                [style '(no-border auto-hscroll auto-vscroll)]))
+                                [editor paragraph-editor] [enabled #t]
+                                [style '(no-border
+                                         no-focus
+                                         auto-hscroll
+                                         auto-vscroll)]))
 
   (spawn-objects (touch future-objects))
 
