@@ -1,16 +1,10 @@
-#lang racket
+#lang racket/base
 
 (require racket/gui
-         "dl.rkt")
+         "dl.rkt"
+         "datatypes.rkt")
 
-(provide (struct-out title)
-         (struct-out paragraph)
-         (struct-out style-data)
-         make-objects)
-
-(struct title (font text))
-(struct paragraph (text))
-(struct style-data (delta))
+(provide make-objects)
 
 (define (make-title-font [size 14] [face "Courier"] [family 'roman]
                          [style 'normal] [weight 'normal]
@@ -30,35 +24,16 @@
     style-delta))
 
 (define (process-object obj)
-  (let ([type (first obj)])
-    (case type
-      [(title) (let* ([font (second obj)]
-                      [font-size (first font)]
-                      [font-face (second font)]
-                      [font-family (third font)]
-                      [font-style (fourth font)]
-                      [font-weight (fifth font)]
-                      [text (third obj)])
-                 (title (make-title-font font-size font-face font-family
-                                         font-style font-weight) text))]
-      [(paragraph) (let ([text (second obj)])
-                     (paragraph text))]
-      [(style-data) (let* ([font (second obj)]
-                           [font-size (first font)]
-                           [font-face (second font)]
-                           [font-family (third font)]
-                           [font-style (fourth font)]
-                           [font-weight (fifth font)])
-                      (style-data (make-paragraph-font font-size font-face
-                                                       font-family font-style
-                                                       font-weight)))])))
+  (match obj
+    [(list 'title (list 'font size face family style weight) text)
+     (title (make-title-font size face family style weight)
+            text)]
+    [(list 'style-data (list 'delta size face family style weight))
+     (style-data (make-paragraph-font size face family style weight))]
+    [(list 'paragraph text) (paragraph text)]))
 
-(define (make-objects [url 'test])
-  (if (equal? url 'test)
-      (let ([data (call-with-input-file "test.objs" read)])
-        (map process-object data))
-      (let ([data (get-obj-data url)])
-        (map process-object data))))
+(define (make-objects uri)
+  (map process-object (get-obj-data uri)))
 
 (module+ main
-  (make-objects))
+  (make-objects "file://motd.obj"))
