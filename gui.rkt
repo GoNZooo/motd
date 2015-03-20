@@ -1,8 +1,9 @@
 #lang racket/gui
 
 (require "dl.rkt"
-         "remote-data.rkt" ; remote-location = url-string, obscured for git-repo
-         "obj-maker.rkt")
+         "remote-data.rkt" ; Exports 'remote-location' of type string, URI
+         "obj-maker.rkt"
+         "datatypes.rkt")
 
 (provide motd)
 
@@ -16,12 +17,15 @@
 
   (define (spawn-objects object-blob)
     (define (spawn-object obj)
-      (cond
-       [(title? obj) (new message% [parent title-panel] [label (title-text obj)]
-                          [font (title-font obj)])]
-       [(style-data? obj)
-        (send paragraph-editor change-style (style-data-delta obj))]
-       [(paragraph? obj) (add-paragraph (paragraph-text obj))]))
+      (match obj
+        [(title font text) (new message% [parent title-panel]
+                                [label text]
+                                [font font])]
+        [(style-data delta) (send paragraph-editor
+                                  change-style
+                                  delta)]
+        [(paragraph text) (add-paragraph text)]))
+    
     (for-each spawn-object object-blob))
 
   (define top-frame (new frame% [label window-title]
