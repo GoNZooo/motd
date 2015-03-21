@@ -3,5 +3,5 @@
  (paragraph "Här är en paragraf! :)")
  (paragraph "Och en till väldigt kort därefter!")
  (style-data (delta 12 "Helvetica" roman normal normal))
- (paragraph "Това е страхотно..."))
+ (paragraph "Това още е страхотно!"))
 
